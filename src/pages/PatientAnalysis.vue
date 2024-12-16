@@ -24,7 +24,7 @@
           :key="analysis.id"
         >
           <div>
-            <p><strong>Аналіз:</strong> {{ analysis.analysis_name }}</p>
+            <p><strong>Аналіз:</strong> {{ analysis.name }}</p>
             <p><strong>Дата запису:</strong> {{ analysis.appointment_date }}</p>
             <p><strong>Рекомендована дата:</strong> {{ analysis.recommended_date || 'Не вказано' }}</p>
             <p><strong>Кількість:</strong> {{ analysis.quantity }}</p>

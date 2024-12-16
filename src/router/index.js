@@ -33,6 +33,12 @@ const routes = [
     meta: { requiresAuth: true },
   },
   {
+    path: '/patient/cards',
+    name: 'PatientCard',
+    component: () => import('@/pages/PatientCard.vue'),
+    meta: { requiresAuth: true },
+  },
+  {
     path: '/:catchAll(.*)',
     name: 'NotFound',
     component: () => import('@/pages/NotFound.vue'),

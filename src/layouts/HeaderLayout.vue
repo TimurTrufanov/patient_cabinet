@@ -6,12 +6,14 @@
       <v-btn :to="{name: 'PatientSchedule'}">
         Записатись на прийом
       </v-btn>
-      <v-btn
-        v-if="isAuthenticated"
-        :to="{name: 'PatientAnalysis'}"
-      >
-        Завантажити аналізи
-      </v-btn>
+      <template v-if="isAuthenticated">
+        <v-btn :to="{name: 'PatientAnalysis'}">
+          Завантажити аналізи
+        </v-btn>
+        <v-btn :to="{name: 'PatientCard'}">
+          Переглянути картки
+        </v-btn>
+      </template>
     </div>
     <v-spacer />
     <v-btn

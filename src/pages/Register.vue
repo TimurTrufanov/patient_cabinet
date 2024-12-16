@@ -20,33 +20,61 @@
         <v-form @submit.prevent="submitRegister">
           <v-text-field
             v-model="form.first_name"
-            label="Ім'я"
+            required
             :error-messages="errors.first_name"
-          />
+          >
+            <template v-slot:label>
+              <span class="required_field">
+                Ім'я
+              </span>
+            </template>
+          </v-text-field>
           <v-text-field
             v-model="form.last_name"
-            label="Прізвище"
+            required
             :error-messages="errors.last_name"
-          />
+          >
+            <template v-slot:label>
+              <span class="required_field">
+                Прізвище
+              </span>
+            </template>
+          </v-text-field>
           <v-text-field
             v-model="form.email"
-            label="Email"
+            required
             :error-messages="errors.email"
-          />
+          >
+            <template v-slot:label>
+              <span class="required_field">
+                Email
+              </span>
+            </template>
+          </v-text-field>
           <v-text-field
             v-model="form.password"
-            label="Пароль"
             autocomplete="on"
             type="password"
             :error-messages="errors.password"
-          />
+          >
+            <template v-slot:label>
+                <span class="required_field">
+                  Пароль
+                </span>
+            </template>
+          </v-text-field>
           <v-text-field
             v-model="form.password_confirmation"
-            label="Підтвердження пароля"
             autocomplete="on"
             type="password"
             :error-messages="errors.password_confirmation"
-          />
+          >
+            <template v-slot:label>
+                  <span class="required_field">
+                    Підтвердження пароля
+                  </span>
+            </template>
+          </v-text-field>
           <v-text-field
             v-model="form.date_of_birth"
             label="Дата народження"
@@ -83,13 +111,13 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import {ref} from 'vue';
+import {useRouter} from 'vue-router';
 import axiosInstance from '@/api/axiosInstance';
-import { useAuth } from '@/composables/auth';
+import {useAuth} from '@/composables/auth';
 
 const router = useRouter();
-const { login } = useAuth();
+const {login} = useAuth();
 
 const form = ref({
   first_name: '',
@@ -136,7 +164,7 @@ const submitRegister = async () => {
 
     login(response.data.token);
 
-    await router.push({ name: 'Home' });
+    await router.push({name: 'Home'});
   } catch (error) {
     if (error.response && error.response.status === 422) {
       const validationErrors = error.response.data.errors;
@@ -150,3 +178,10 @@ const submitRegister = async () => {
   }
 };
 </script>
+
+<style scoped>
+.required_field::after {
+  content: " *";
+  color: red;
+}
+</style>
